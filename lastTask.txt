@@ -1,0 +1,188 @@
+Build started at 2:41 PM...
+1>------ Build started: Project: StackDriver, Configuration: Debug x64 ------
+1>Building 'StackDriver' with toolset 'WindowsKernelModeDriver10.0' and the 'Universal' target platform.
+1>Stamping x64\Debug\StackDriver.inf
+1>Stamping [Version] section with DriverVer=04/07/2025,14:33.987
+1>Source.c
+1>C:\Users\laki\source\repos\StackDriver\Source.c(13,29): warning C4100: 'DriverObject': unreferenced formal parameter
+1>C:\Users\laki\source\repos\StackDriver\Source.c(20,41): warning C4459: declaration of 'DeviceObject' hides global declaration
+1>  C:\Users\laki\source\repos\StackDriver\Source.c(11,16): note: see declaration of 'DeviceObject'
+1>C:\Users\laki\source\repos\StackDriver\Source.c(20,41): warning C4100: 'DeviceObject': unreferenced formal parameter
+1>C:\Users\laki\source\repos\StackDriver\Source.c(49,41): warning C4459: declaration of 'DeviceObject' hides global declaration
+1>  C:\Users\laki\source\repos\StackDriver\Source.c(11,16): note: see declaration of 'DeviceObject'
+1>C:\Users\laki\source\repos\StackDriver\Source.c(49,41): warning C4100: 'DeviceObject': unreferenced formal parameter
+1>C:\Users\laki\source\repos\StackDriver\Source.c(68,43): warning C4267: '=': conversion from 'size_t' to 'ULONG', possible loss of data
+1>C:\Users\laki\source\repos\StackDriver\Source.c(70,43): warning C4267: '=': conversion from 'size_t' to 'ULONG', possible loss of data
+1>C:\Users\laki\source\repos\StackDriver\Source.c(75,8): warning C4189: 'outLength': local variable is initialized but not referenced
+1>C:\Users\laki\source\repos\StackDriver\Source.c(88,8): warning C4189: 'inLength': local variable is initialized but not referenced
+1>C:\Users\laki\source\repos\StackDriver\Source.c(95,8): warning C4100: 'RegistryPath': unreferenced formal parameter
+1>StackDriver.vcxproj -> C:\Users\laki\source\repos\StackDriver\x64\Debug\StackDriver.sys
+1>Driver is 'Universal'
+1>Signability test complete.
+1>
+1>Errors:
+1>None
+1>
+1>Warnings:
+1>None
+1>
+1>Catalog generation complete.
+1>C:\Users\laki\source\repos\StackDriver\x64\Debug\stackdriver.cat
+1>Done building project 'StackDriver.vcxproj'.
+1>
+1>========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
+1>========== Build completed at 2:41 PM and took 03.765 seconds ==========
+
+////////////////////////////////////////////////
+
+
+C:\Users\laki\source\repos\StackDriver\x64\Debug>"C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\signtool.exe" sign /v /fd SHA256 /sha1 F3CFF747C478B466AB292FE89455D37749FAB0D3 StackDriver.sys
+SignTool Error: No certificates were found that met all the given criteria.
+
+C:\Users\laki\source\repos\StackDriver\x64\Debug>Import-Certificate -FilePath ".\TestCert.cer" -CertStoreLocation "Cert:\CurrentUser\My"
+'Import-Certificate' is not recognized as an internal or external command, operable program or batch file.
+
+C:\Users\laki\source\repos\StackDriver\x64\Debug>"C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\signtool.exe" sign /v /n "TestCert" /fd SHA256 StackDriver.sys
+The following certificate was selected:
+    Issued to: TestCert
+    Issued by: TestCert
+    Expires:   Tue Apr 07 15:24:46 2026
+    SHA1 hash: F3CFF747C478B466AB292FE89455D37749FAB0D3
+
+Done Adding Additional Store
+Successfully signed: StackDriver.sys
+
+Number of files successfully Signed: 1
+Number of warnings: 0
+Number of errors: 0
+
+/////////////////////////////////////////////////
+
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+
+PS C:\WINDOWS\system32> cd "C:\Users\laki\source\repos\StackDriver\x64\Debug"
+PS C:\Users\laki\source\repos\StackDriver\x64\Debug> New-SelfSignedCertificate -Type CodeSigningCert -Subject "CN=TestCert" `
+>> -KeyUsage DigitalSignature -KeyExportPolicy Exportable `
+>> -CertStoreLocation "Cert:\LocalMachine\My"
+>>
+PSParentPath: Microsoft.PowerShell.Security\Certificate::LocalMachine\My
+
+Thumbprint                                Subject
+----------                                -------
+F3CFF747C478B466AB292FE89455D37749FAB0D3  CN=TestCert
+
+
+
+///////////////////////////////////////////////////
+
+
+Catalog generation complete.
+C:\Users\laki\source\repos\StackDriver\x64\Debug\stackdriver.cat
+
+C:\Users\laki\source\repos\StackDriver\x64\Debug>
+C:\Users\laki\source\repos\StackDriver\x64\Debug>"C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\signtool.exe" sign /v /n "TestCert" /fd SHA256 StackDriver.cat
+The following certificate was selected:
+    Issued to: TestCert
+    Issued by: TestCert
+    Expires:   Tue Apr 07 15:24:46 2026
+    SHA1 hash: F3CFF747C478B466AB292FE89455D37749FAB0D3
+
+Done Adding Additional Store
+Successfully signed: stackdriver.cat
+
+Number of files successfully Signed: 1
+Number of warnings: 0
+Number of errors: 0
+
+C:\Users\laki\source\repos\StackDriver\x64\Debug>pnputil /add-driver StackDriver.inf /install
+Microsoft PnP Utility
+
+Adding driver package: StackDriver.inf
+Driver package added successfully.
+Published Name: oem87.inf
+
+Total driver packages: 1
+Added driver packages: 1
+
+C:\Users\laki\source\repos\StackDriver\x64\Debug>
+
+
+//////////////////////////////////////////////////////
+
+
+
+Show output from: Build
+
+Build started at 5:12 PM...
+1>------ Build started: Project: StackDriverMFCApp, Configuration: Debug x64 ------
+1>pch.cpp
+1>StackDriverMFCApp.cpp
+1>StackDriverMFCAppDlg.cpp
+1>Generating Code...
+1>StackDriverMFCApp.vcxproj -> C:\Users\laki\source\repos\StackDriverMFCApp\x64\Debug\StackDriverMFCApp.exe
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
+========== Build completed at 5:12 PM and took 10.347 seconds ==========
+
+
+
+////////////////////////////////////////////////////////
+
+
+PS C:\Users\laki\source\repos\StackDriver\x64\Debug> $cert = Get-ChildItem -Path Cert:\LocalMachine\My | Where-Object { $_.Subject -eq "CN=TestCert" }
+>> Export-Certificate -Cert $cert -FilePath ".\TestCert.cer"
+>>
+
+ Directory: C:\Users\laki\source\repos\StackDriver\x64\Debug
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----               4/7/2025  3:16 PM       762   TestCert.cer
+
+PS C:\Users\laki\source\repos\StackDriver\x64\Debug> Import-Certificate -FilePath ".\TestCert.cer" -CertStoreLocation "Cert:\LocalMachine\Root"
+>>
+
+PSParentPath: Microsoft.PowerShell.Security\Certificate::LocalMachine\Root
+
+Thumbprint                                Subject
+----------                                -------
+F3CFF747C478B466AB292FE89455D37749FAB0D3  CN=TestCert
+
+
+
+////////////////////////////////////////////////////////////
+
+
+
+C:\Users\laki\source\repos\StackDriver\x64\Debug>Import-Certificate -FilePath ".\TestCert.cer" -CertStoreLocation "Cert:\CurrentUser\My"
+'Import-Certificate' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\laki\source\repos\StackDriver\x64\Debug>"C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\signtool.exe" sign /v /n "TestCert" /fd SHA256 StackDriver.sys
+The following certificate was selected:
+    Issued to: TestCert
+    Issued by: TestCert
+    Expires:   Tue Apr 07 15:24:46 2026
+    SHA1 hash: F3CFF747C478B466AB292FE89455D37749FAB0D3
+
+Done Adding Additional Store
+Successfully signed: StackDriver.sys
+
+Number of files successfully Signed: 1
+Number of warnings: 0
+Number of errors: 0
+
+C:\Users\laki\source\repos\StackDriver\x64\Debug>pnputil /add-driver StackDriver.inf /install
+Microsoft PnP Utility
+
+Adding driver package: StackDriver.inf
+Failed to add driver package: The third-party INF does not contain digital signature information.
+
+Total driver packages: 1
+Added driver packages: 1
+
+
+
+
